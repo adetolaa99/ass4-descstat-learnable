@@ -33,7 +33,6 @@ class DescriptiveStatistics {
     return Math.max(...this.data) - Math.min(...this.data);
   }
 
-  //We have to use variance to get standard deviation so we calculate it first
   variance() {
     const mean = this.mean();
     return (
@@ -41,15 +40,42 @@ class DescriptiveStatistics {
       this.data.length
     );
   }
+
+  //We use variance to calculate standard deviation
   standardDeviation() {
     return Math.sqrt(this.variance());
   }
+
+  meanDeviation() {
+    const mean = this.mean();
+    return (
+      this.data.reduce((sum, value) => sum + Math.abs(value - mean), 0) /
+      this.data.length
+    );
+  }
+
+  quartileDeviation() {
+    const lowerQuartile = this.data[Math.floor(this.data.length / 4)];
+    const upperQuartile = this.data[Math.floor((this.data.length * 3) / 4)];
+    return (upperQuartile - lowerQuartile) / 2;
+  }
 }
 
-const desStat = new DescriptiveStatistics([1, 2, 3, 4, 5]);
-console.log("The Mean is", desStat.mean());
-console.log("The Median is", desStat.median());
-console.log("The Mode is", desStat.mode());
+const desStat = new DescriptiveStatistics([1, 5, 7, 15, 12, 9, 7]);
 
-console.log("The Range is", desStat.range());
-console.log("The Standard Deviation is", desStat.standardDeviation());
+//Measures of Central Tendency
+console.log("The Mean of the data is", desStat.mean());
+console.log("The Median of the data is", desStat.median());
+console.log("The Mode of the data is", desStat.mode());
+//Measures of Dispersion
+console.log("The Range of the data is", desStat.range());
+console.log("The Variance of the data is", desStat.variance());
+console.log(
+  "The Standard Deviation of the data is",
+  desStat.standardDeviation()
+);
+console.log("The Mean Deviation of the data is", desStat.meanDeviation());
+console.log(
+  "The Quartile Deviation of the data is",
+  desStat.quartileDeviation()
+);
