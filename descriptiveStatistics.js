@@ -46,6 +46,7 @@ class DescriptiveStatistics {
     return Math.sqrt(this.variance());
   }
 
+  //We use mean to calculate mean deviation
   meanDeviation() {
     const mean = this.mean();
     return (
@@ -67,6 +68,7 @@ const desStat = new DescriptiveStatistics([1, 5, 7, 15, 12, 9, 7]);
 console.log("The Mean of the data is", desStat.mean());
 console.log("The Median of the data is", desStat.median());
 console.log("The Mode of the data is", desStat.mode());
+
 //Measures of Dispersion
 console.log("The Range of the data is", desStat.range());
 console.log("The Variance of the data is", desStat.variance());
